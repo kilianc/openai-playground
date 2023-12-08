@@ -18,7 +18,7 @@
     "@evilmartians/lefthook": "1.5.5",
     "@types/jest": "29.5.11",
     "@typescript-eslint/eslint-plugin": "6.13.2",
-    "@typescript-eslint/parser": "6.13.1",
+    "@typescript-eslint/parser": "6.13.2",
     "eslint": "8.55.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-config-standard-with-typescript": "40.0.0",
