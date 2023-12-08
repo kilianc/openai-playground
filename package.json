@@ -11,12 +11,15 @@
     "common-tags": "1.8.2",
     "dotenv": "16.3.1",
     "fast-safe-stringify": "2.1.1",
+    "openai": "4.20.1",
+    "prompts": "2.4.2",
     "sonic-boom": "3.7.0",
     "ts-node": "10.9.1"
   },
   "devDependencies": {
     "@evilmartians/lefthook": "1.5.5",
     "@types/jest": "29.5.10",
+    "@types/prompts": "2.4.9",
     "@typescript-eslint/eslint-plugin": "6.13.1",
     "@typescript-eslint/parser": "6.13.1",
     "eslint": "8.54.0",
