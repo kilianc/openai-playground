@@ -17,6 +17,7 @@
     "lefthook",
     "loglevel",
     "nodemonrc",
+    "openai",
     "proto",
     "protobuf",
     "protoc"

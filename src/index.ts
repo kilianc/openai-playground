@@ -1,25 +1,77 @@
 import './lib/process'
 
-import { greeterHandlers } from './api'
+import OpenAI from 'openai'
+import prompts from 'prompts'
+
 import { config } from './lib/config'
-import { createServer } from './lib/create-server'
-import { createClient } from './lib/greeter-client'
-import { proto } from './lib/greeter-proto'
 import { logger } from './lib/logger'
 
 logger.setIndent(config.LOG_INDENT)
-logger.info({ message: 'Hello World', config })
 
 const main = async () => {
-  const address = '0.0.0.0:9090'
+  const openai = new OpenAI()
+  const model = 'gpt-4-1106-preview'
 
-  const { server, listen } = createServer()
-  server.addService(proto.Greeter.service, greeterHandlers)
-  await listen(address)
+  // const { question }: { question: string } = await prompts({
+  //   type: 'text',
+  //   name: 'question',
+  //   message: 'ask something'
+  // })
 
-  const greeter = createClient(address)
-  const { message } = await greeter.sayHello('kilian')
-  logger.info(message)
+  const response = await openai.beta.chat.completions
+    .runFunctions({
+      model,
+      messages: [
+        {
+          role: 'user',
+          content: 'what is the most popular color around me?'
+        }
+      ],
+      functions: [
+        {
+          function: getColorStats,
+          description: 'Get dataset of colors and their usage count.',
+          parameters: { type: 'object', properties: {} }
+        },
+        {
+          function: getMyLocation,
+          description: 'Return the location of the user.',
+          parameters: { type: 'object', properties: {} }
+        }
+      ]
+    })
+    .finalContent()
+
+  logger.info({ message: response })
+}
+
+function getMyLocation() {
+  return 'San Mateo, CA'
+}
+
+function getColorStats() {
+  return [
+    {
+      color: 'blue',
+      count: 5,
+      location: 'San Francisco, CA'
+    },
+    {
+      color: 'red',
+      count: 3,
+      location: 'Palo Alto, CA'
+    },
+    {
+      color: 'green',
+      count: 12,
+      location: 'Los Angeles, CA'
+    },
+    {
+      color: 'yellow',
+      count: 12,
+      location: 'Los Angeles, CA'
+    }
+  ]
 }
 
 main()

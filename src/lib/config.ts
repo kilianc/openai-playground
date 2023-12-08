@@ -5,17 +5,10 @@ loadDotEnvIfPresent()
 
 const errors = []
 
-if (process.env.FOO == null) {
+if (process.env.OPENAI_API_KEY == null) {
   errors.push(s`
-    error: missing required env "FOO=******"
-           see "https://hot-to-get-foo-link"
-  `)
-}
-
-if (process.env.BAR == null) {
-  errors.push(s`
-    error: missing required env "BAR=******"
-           see "https://hot-to-get-bar-link"
+    error: missing required env "OPENAI_API_KEY=******"
+           see "https://platform.openai.com/account/api-keys"
   `)
 }
 
@@ -34,6 +27,5 @@ export const config = {
   REVISION: process.env.REVISION,
   EXIT_SIGNALS: ['SIGINT', 'SIGTERM'],
   LOG_INDENT: tryParseInt(process.env.LOG_INDENT, 0),
-  FOO: process.env.FOO,
-  BAR: process.env.BAR
+  OPENAI_API_KEY: process.env.OPENAI_API_KEY
 }
