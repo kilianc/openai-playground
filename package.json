@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "@grpc/grpc-js": "1.13.4",
-    "@grpc/proto-loader": "0.7.13",
+    "@grpc/proto-loader": "0.8.0",
     "@types/common-tags": "1.8.4",
     "@types/node": "22.15.29",
     "common-tags": "1.8.2",
